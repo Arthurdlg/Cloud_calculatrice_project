@@ -1,7 +1,7 @@
 package operations;
 
-public class Soustraction {
+public class Puissance {
     public static double calculer(double a, double b) {
-        return a - b;
+        return (double) Math.pow(a, b);
     }
 }

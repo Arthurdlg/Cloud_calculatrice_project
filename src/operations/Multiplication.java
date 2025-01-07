@@ -1,7 +1,7 @@
 package operations;
 
 public class Multiplication {
-    public static int multiplication(int a, int b) {
+    public static double calculer(double a, double b) {
         return a * b;
     }
 }
