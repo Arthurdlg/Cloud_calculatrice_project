@@ -1,4 +1,4 @@
-package operations;
+package main.java.com.Calculatrice.operations;
 
 public class RacineCarree {
     public static double calculer(double nombre) {

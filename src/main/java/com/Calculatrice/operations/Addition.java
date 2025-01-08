@@ -1,4 +1,4 @@
-package operations;
+package main.java.com.Calculatrice.operations;
 
 public class Addition {
     public static double calculer(double a, double b) {

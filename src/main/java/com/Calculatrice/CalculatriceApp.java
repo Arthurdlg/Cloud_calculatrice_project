@@ -1,11 +1,11 @@
-package main;
+package main.java.com.Calculatrice;
 
-import operations.Addition;
-import operations.Division;
-import operations.Multiplication;
-import operations.Soustraction;
-import operations.RacineCarree;
-import operations.Puissance;
+import main.java.com.Calculatrice.operations.Addition;
+import main.java.com.Calculatrice.operations.Division;
+import main.java.com.Calculatrice.operations.Multiplication;
+import main.java.com.Calculatrice.operations.Soustraction;
+import main.java.com.Calculatrice.operations.RacineCarree;
+import main.java.com.Calculatrice.operations.Puissance;
 
 import java.util.Scanner;
 
