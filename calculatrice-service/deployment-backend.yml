@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculatrice-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: calculatrice-service
+  template:
+    metadata:
+      labels:
+        app: calculatrice-service
+    spec:
+      containers:
+        - name: calculatrice-service
+          image: dlgart/calculatrice-service:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: calculatrice-service
+spec:
+  selector:
+    app: calculatrice-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
