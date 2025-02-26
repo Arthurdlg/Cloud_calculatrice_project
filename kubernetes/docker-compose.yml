@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: calculatrice-ingress
+spec:
+  rules:
+    - host: calculatrice.local
+      http:
+        paths:
+          - path: /api/
+            pathType: Prefix
+            backend:
+              service:
+                name: calculatrice-service
+                port:
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: calculatrice-front
+                port:
+                  number: 80

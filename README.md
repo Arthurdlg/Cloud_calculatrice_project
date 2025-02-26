@@ -48,10 +48,14 @@ docker run -d -p 8081:8080 dlgart/calculatrice-front
 ```
 ### **Déploiement avec Kubernetes**
 ```bash
-kubectl apply -f deployment-backend.yml
-kubectl apply -f deployment-frontend.yml
+kubectl apply -f kubernetes/deployment-backend.yml
+kubectl apply -f kubernetes/service-backend.yml
+kubectl apply -f kubernetes/deployment-frontend.yml
+kubectl apply -f kubernetes/service-frontend.yml
+kubectl apply -f kubernetes/gateway.yml
+
 ```
-### **kubectl get pods**
+### **Vérifier les pods**
 ```bash
 kubectl get pods
 ```

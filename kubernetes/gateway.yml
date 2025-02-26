@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  backend:
+    image: dlgart/calculatrice-service
+    container_name: calculatrice-service
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: dlgart/calculatrice-front
+    container_name: calculatrice-front
+    ports:
+      - "5173:80"
