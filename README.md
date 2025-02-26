@@ -46,7 +46,10 @@ docker pull dlgart/calculatrice-front
 docker run -d -p 8080:8080 dlgart/calculatrice-service
 docker run -d -p 8081:8080 dlgart/calculatrice-front
 ```
-### **Déploiement avec Kubernetes**
+
+---
+ 
+## **Déploiement avec Kubernetes**
 ```bash
 kubectl apply -f kubernetes/deployment-backend.yml
 kubectl apply -f kubernetes/service-backend.yml
