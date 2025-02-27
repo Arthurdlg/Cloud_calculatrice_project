@@ -37,12 +37,12 @@ export default {
       nombre2: null,
       result: null,
       operations: [
-        { label: "Addition", value: "addition" },
-        { label: "Soustraction", value: "soustraction" },
-        { label: "Multiplication", value: "multiplication" },
-        { label: "Division", value: "division" },
-        { label: "Racine Carrée", value: "racine" },
-        { label: "Puissance", value: "puissance" },
+        { label: "+", value: "addition" },
+        { label: "-", value: "soustraction" },
+        { label: "x", value: "multiplication" },
+        { label: "/", value: "division" },
+        { label: "√", value: "racine" },
+        { label: "n1^n2", value: "puissance" },
       ],
     };
   },

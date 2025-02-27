@@ -1,14 +1,43 @@
-version: "3.8"
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: calculatrice-gateway
+spec:
+  selector:
+    istio: ingressgateway  # Assurez-vous qu'Istio est bien installé
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
 
-services:
-  backend:
-    image: dlgart/calculatrice-service
-    container_name: calculatrice-service
-    ports:
-      - "8080:8080"
+---
 
-  frontend:
-    image: dlgart/calculatrice-front
-    container_name: calculatrice-front
-    ports:
-      - "5173:80"
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: calculatrice-virtualservice
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - calculatrice-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /api/calculatrice/
+      route:
+        - destination:
+            host: calculatrice-service
+            port:
+              number: 8080
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: calculatrice-front
+            port:
+              number: 80

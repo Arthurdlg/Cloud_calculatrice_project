@@ -21,6 +21,50 @@ Calculatrice simple avec les opérations suivantes :
 ---
 
 ## **Lancement**
+## **Déploiement avec Kubernetes**
+### **Démarrer Minikube**
+```bash
+minikube start --driver=docker      
+```
+### **Activer Istio**
+```bash
+istioctl install --set profile=demo -y
+kubectl label namespace default istio-injection=enabled
+kubectl get pods -n istio-system
+```
+
+### **Déployer les services**
+```bash
+kubectl apply -f calculatrice-service/deployment-backend.yml
+kubectl apply -f calculatrice-service/service-backend.yml
+kubectl apply -f calculatrice-front/deployment-frontend.yml
+kubectl apply -f calculatrice-front/service-frontend.yml
+kubectl apply -f kubernetes/gateway.yml
+```
+
+### **Vérifier les pods**
+```bash
+kubectl get pods
+```
+### **Récupérer l'IP du frontend**
+```bash
+minikube service calculatrice-front --url
+```
+
+---
+
+## **Lancer avec Docker**
+```bash
+docker pull dlgart/calculatrice-service
+docker pull dlgart/calculatrice-front
+
+docker run -d -p 8080:8080 dlgart/calculatrice-service
+docker run -d -p 8081:8080 dlgart/calculatrice-front
+```
+
+---
+---
+
 ### **Lancer en Local**
 **🔹 Backend :**
 ```bash
@@ -37,33 +81,6 @@ npm run serve
 Ouvrir le navigateur et accéder à l'URL suivante : [http://localhost:8080/](http://localhost:8080/)
 
 ---
-
-## **Lancer avec Docker**
-```bash
-docker pull dlgart/calculatrice-service
-docker pull dlgart/calculatrice-front
-
-docker run -d -p 8080:8080 dlgart/calculatrice-service
-docker run -d -p 8081:8080 dlgart/calculatrice-front
-```
-
----
  
-## **Déploiement avec Kubernetes**
-```bash
-kubectl apply -f kubernetes/deployment-backend.yml
-kubectl apply -f kubernetes/service-backend.yml
-kubectl apply -f kubernetes/deployment-frontend.yml
-kubectl apply -f kubernetes/service-frontend.yml
-kubectl apply -f kubernetes/gateway.yml
 
-```
-### **Vérifier les pods**
-```bash
-kubectl get pods
-```
-### **Récupérer l'IP du frontend**
-```bash
-kubectl get services
-```
 
