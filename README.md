@@ -78,7 +78,7 @@ npm install
 npm run serve
 ```
 ### **Accéder à l'application**
-Ouvrir le navigateur et accéder à l'URL suivante : [http://localhost:8080/](http://localhost:8080/)
+Ouvrir le navigateur et accéder à l'URL suivante : [http://localhost:8080/](http://localhost:8081/)
 
 ---
  
