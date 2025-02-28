@@ -7,7 +7,7 @@
       <div class="flex justify-between mb-4">
         <input v-model="nombre1" type="number" placeholder="Nombre 1"
                class="w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2">
-        <input v-model="nombre2" type="number" placeholder="Nombre 2"
+        <input v-model="nombre2" type="number" placeholder="Nombre 2" v-if="showInputN2"
                class="w-1/2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
 
@@ -28,14 +28,15 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data() {
     return {
       nombre1: null,
       nombre2: null,
       result: null,
+      showInputN2: true,
+      // gatewayURL: "http://localhost:8080",
+      gatewayURL: "http://calculatrice-service:80",
       operations: [
         { label: "+", value: "addition" },
         { label: "-", value: "soustraction" },
@@ -49,16 +50,22 @@ export default {
   methods: {
     async calculer(operation) {
       try {
-        const params = { a: this.nombre1, b: this.nombre2 };
+        let url = `${this.gatewayURL}/calculatrice/${operation}?a=${this.nombre1}`;
 
-        // Si l'opération est racine, on envoie seulement "a"
         if (operation === "racine") {
-          params.b = undefined;
+          this.showInputN2 = false;
+        } else {
+          this.showInputN2 = true;
+          url += `&b=${this.nombre2}`;
         }
 
-        const response = await axios.get(`http://localhost:8080/calculatrice/${operation}`, { params });
+        const response = await fetch(url);
 
-        this.result = response.data;
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+
+        this.result = await response.json();
       } catch (error) {
         console.error("Erreur :", error);
         this.result = "Erreur de communication avec le serveur.";
@@ -67,3 +74,4 @@ export default {
   }
 };
 </script>
+

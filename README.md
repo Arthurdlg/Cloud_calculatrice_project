@@ -20,7 +20,6 @@ Calculatrice simple avec les opérations suivantes :
 
 ---
 
-## **Lancement**
 ## **Déploiement avec Kubernetes**
 ### **Démarrer Minikube**
 ```bash
@@ -30,7 +29,6 @@ minikube start --driver=docker
 ```bash
 istioctl install --set profile=demo -y
 kubectl label namespace default istio-injection=enabled
-kubectl get pods -n istio-system
 ```
 
 ### **Déployer les services**
@@ -40,11 +38,15 @@ kubectl apply -f calculatrice-service/service-backend.yml
 kubectl apply -f calculatrice-front/deployment-frontend.yml
 kubectl apply -f calculatrice-front/service-frontend.yml
 kubectl apply -f kubernetes/gateway.yml
+kubectl apply -f kubernetes/mysql-deployment.yml
+kubectl apply -f kubernetes/mysql-service.yml
+kubectl apply -f kubernetes/peer-authentication.yml
+kubectl apply -f kubernetes/authorization-policy.yml
 ```
 
 ### **Vérifier les pods**
 ```bash
-kubectl get pods
+kubectl get pods,services
 ```
 ### **Récupérer l'IP du frontend**
 ```bash

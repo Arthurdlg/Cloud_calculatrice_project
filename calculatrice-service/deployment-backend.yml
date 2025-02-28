@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: calculatrice-service
+  labels:
+    app: calculatrice-service
 spec:
   replicas: 2
   selector:
@@ -11,22 +13,29 @@ spec:
     metadata:
       labels:
         app: calculatrice-service
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
         - name: calculatrice-service
           image: dlgart/calculatrice-service:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: calculatrice-service
+  labels:
+    app: calculatrice-service
 spec:
+  type: ClusterIP
   selector:
     app: calculatrice-service
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  type: ClusterIP

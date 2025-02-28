@@ -4,7 +4,7 @@ metadata:
   name: calculatrice-gateway
 spec:
   selector:
-    istio: ingressgateway  # Assurez-vous qu'Istio est bien installé
+    istio: ingressgateway
   servers:
     - port:
         number: 80
@@ -27,7 +27,7 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /api/calculatrice/
+            prefix: /calculatrice/
       route:
         - destination:
             host: calculatrice-service

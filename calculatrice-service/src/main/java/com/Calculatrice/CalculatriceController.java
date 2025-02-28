@@ -1,13 +1,16 @@
 package com.Calculatrice;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/calculatrice")
 public class CalculatriceController {
 
     @GetMapping("/addition")
     public double addition(@RequestParam double a, @RequestParam double b) {
+        System.out.println("Requête reçue : a=" + a + ", b=" + b);
         return a + b;
     }
 
