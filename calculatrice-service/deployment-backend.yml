@@ -24,18 +24,3 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: calculatrice-service
-  labels:
-    app: calculatrice-service
-spec:
-  type: ClusterIP
-  selector:
-    app: calculatrice-service
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080

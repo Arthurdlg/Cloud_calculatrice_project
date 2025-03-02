@@ -10,7 +10,6 @@ public class CalculatriceController {
 
     @GetMapping("/addition")
     public double addition(@RequestParam double a, @RequestParam double b) {
-        System.out.println("Requête reçue : a=" + a + ", b=" + b);
         return a + b;
     }
 

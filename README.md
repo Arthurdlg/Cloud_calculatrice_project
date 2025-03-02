@@ -40,6 +40,7 @@ kubectl apply -f calculatrice-front/service-frontend.yml
 kubectl apply -f kubernetes/gateway.yml
 kubectl apply -f kubernetes/mysql-deployment.yml
 kubectl apply -f kubernetes/mysql-service.yml
+
 kubectl apply -f kubernetes/peer-authentication.yml
 kubectl apply -f kubernetes/authorization-policy.yml
 ```
@@ -74,6 +75,8 @@ cd calculatrice-service
 mvn spring-boot:run
 ```
 **🔹 Frontend :**
+Dans src/components/Calculatrice.vue, modifier la variable gatewayURL en "http://localhost:8080"
+et lancer :
 ```bash
 cd calculatrice-front
 npm install
