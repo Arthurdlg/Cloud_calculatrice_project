@@ -40,9 +40,6 @@ kubectl apply -f calculatrice-front/service-frontend.yml
 kubectl apply -f kubernetes/gateway.yml
 kubectl apply -f kubernetes/mysql-deployment.yml
 kubectl apply -f kubernetes/mysql-service.yml
-
-kubectl apply -f kubernetes/peer-authentication.yml
-kubectl apply -f kubernetes/authorization-policy.yml
 ```
 
 ### **Vérifier les pods**
